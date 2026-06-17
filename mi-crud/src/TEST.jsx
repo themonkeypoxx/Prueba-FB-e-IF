@@ -1,17 +1,22 @@
 import { useState,useRef,useEffect } from "react";
-import {v4 as uuid} from 'uuid';//npm i uuid
+import { v4 as uuid } from "uuid";
+import ToDoItem from "./ToDoItem";
 
-const KEY="todolist-todos";//el nombre que tendrá el arreglo en el localStorage
+const KEY="chapuzas-productos";//el nombre que tendrá el arreglo en el localStorage
 
 
 function TEST(){
-
+    //ESTA SE QUEDA (es lo que revisa q la lista este vacía o no)
     const [todos,setTodos]=useState(
         JSON.parse(localStorage.getItem(KEY))?JSON.parse(localStorage.getItem(KEY)):[]
     );
+    // ESTO SE CLONÓ VARIAS VECES. El coso original usa solo 1 campo, pero nosotros ocupamos 4
+    const nombreRef = useRef();
+    const precioRef = useRef();
+    const stockRef = useRef();
+    const descripcionRef = useRef();
 
-    const taskRef=useRef();
-
+    // ESTA SE QUEDA (es el guardado automático)
     useEffect(()=>{
         localStorage.setItem(KEY,JSON.stringify(todos));
         },[todos]);//cuando cambie el todos lo guarda en localStorage
@@ -70,20 +75,45 @@ function TEST(){
         ///// ESTE ES EL HTML /////
         ///////////////////////////
         <>
-            <h1>Listado de Tareas</h1>
-            <div className="input-group mb-3 mt-4">
-                <input ref={taskRef} placeholder="Ingrese una tarea" className="form-control" type="text" name="" id="">
-                </input>{/*  soy un comentario  */}
-                <button onClick={agregarTarea} className="btn btn-success ms-2"><i className="bi bi-plus-circle-fill">
-                    </i></button>
-                <button onClick={eliminarTareasCompletadas} className="btn btn-danger ms-2"><i className="bi bi-trash">
-                    </i></button>
-            </div>
-            <ul className="list-group">
-                {todos.map((todo)=><ToDoItem todo={todo} key={todo.id} cambiarEstado={cambiarEstadoTarea}></ToDoItem>)}
-                {/*soy comentario*/}
-            </ul>
-            <ResumenTareas/>
+            <html lang="es">
+            <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>Document</title>
+                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"></link>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+            </head>
+            <body>
+ 
+                <h1>Chapuzas</h1>
+                <div class="card text-center">
+                <div class="card-header">
+                    <h3>Administrador de productos chapuzas</h3>
+                </div>
+                <div class="card-body">
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">stock</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    </div>
+                    <div class="input-group input-group-sm mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    </div>
+                </div>
+                <div class="card-footer text-body-secondary">
+                    2 days ago
+                </div>
+                </div>
+            </body>
+            </html>
         </>
     );
 };

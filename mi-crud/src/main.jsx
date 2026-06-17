@@ -5,6 +5,6 @@ import TEST from './TEST'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <TEST/>
+    <TEST />
   </StrictMode>,
 )
