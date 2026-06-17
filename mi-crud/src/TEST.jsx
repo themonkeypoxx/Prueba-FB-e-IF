@@ -21,54 +21,36 @@ function TEST(){
         localStorage.setItem(KEY,JSON.stringify(todos));
         },[todos]);//cuando cambie el todos lo guarda en localStorage
     
-    const agregarTarea=()=>{
-        const task=taskRef.current.value;
-        const id=uuid();
-        console.log(id);
-        if(task==='')return;
-        setTodos((prevTodos)=>{
-            const newTask = {
-                id: id,
-                task: task,
-                complete:false
-            }
-            return [...prevTodos, newTask]
-        });
-        taskRef.current.value="";
-    }
-    
-    const eliminarTareasCompletadas=()=>{
-        const newTodos=todos.filter((todo)=>!todo.complete);
-        setTodos(newTodos);
-    }
+    const agregarProducto = () => {
+        const nombre = nombreRef.current.value;
+        const precio = precioRef.current.value;
+        const stock = stockRef.current.value;
+        const descripcion = descripcionRef.current.value;
 
-    const cambiarEstadoTarea=(id)=>{
-        
-        const newTodos=[...todos];
-        const todo=newTodos.find((todo)=>todo.id===id);
-        todo.complete=!todo.complete;
-        setTodos(newTodos);
-    }
-    
-    const cantidadTareas=()=>{
-        return todos.filter((todo)=>!todo.complete).length;
-    }
-    const ResumenTareas=()=>{
-        const cantidad=cantidadTareas();
-        if(cantidad>1){
-            return (<div className="alert alert-info mt-3">
-            Te quedan {cantidad} tareas pendientes!
-            </div>);
-        }else if(cantidad===1){
-            return (<div className="alert alert-info mt-3">
-            Te queda {cantidad} tarea pendiente!
-            </div>);
-        }else{
-            return (<div className="alert alert-info mt-3">
-            No te quedan tareas pendientes!
-        </div>);
-        }   
-    }
+        // Validación básica (que los campos obligatorios no estén vacíos)
+        if (nombre === '' || precio === '') return;
+
+        setProductos((prevProductos) => {
+            const nuevoProducto = {
+                id: uuid(), // ID único
+                nombre: nombre,
+                precio: precio,
+                stock: stock,
+                descripcion: descripcion
+            };
+            return [...prevProductos, nuevoProducto];
+        });
+
+        nombreRef.current.value = "";
+        precioRef.current.value = "";
+        stockRef.current.value = "";
+        descripcionRef.current.value = "";
+    };
+
+    const eliminarProducto = (id) => {
+        const nuevosProductos = productos.filter((prod) => prod.id !== id);
+        setProductos(nuevosProductos);
+    };
     
     return (
         ////////////////////////////
