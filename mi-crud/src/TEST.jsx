@@ -4,7 +4,7 @@ import ToDoItem from "./ToDoItem";
 
 const KEY="chapuzas-productos";//el nombre que tendrá el arreglo en el localStorage
 
-
+//////////////////////ya le meti el crud josue
 function TEST(){
     //ESTA SE QUEDA (es lo que revisa q la lista este vacía o no)
     const [todos,setTodos]=useState(
