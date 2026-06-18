@@ -1,10 +1,13 @@
 import { useState,useRef,useEffect } from "react";
 import { v4 as uuid } from "uuid";
-import ToDoItem from "./ToDoItem";
+import ProductoRow from "./ProductoRow";
 
 const KEY="chapuzas-productos";//el nombre que tendrá el arreglo en el localStorage
 
 //////////////////////ya le meti el crud josue
+
+//SOLO FALTA UN HTML CONECTADO A ESTO Y QUE EL PRODUCTOROW RENDERIZE LOS COSOS EN LA TABLA QUE TENDRA EL HTML
+//pq aun no estan conectados ejejjejej
 function TEST(){
     //ESTA SE QUEDA (es lo que revisa q la lista este vacía o no)
     const [todos,setTodos]=useState(
