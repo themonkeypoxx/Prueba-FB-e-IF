@@ -10,7 +10,7 @@ const KEY="chapuzas-productos";//el nombre que tendrá el arreglo en el localSto
 //pq aun no estan conectados ejejjejej
 function TEST(){
     //ESTA SE QUEDA (es lo que revisa q la lista este vacía o no)
-    const [todos,setTodos]=useState(
+    const [productos, setProductos]=useState(
         JSON.parse(localStorage.getItem(KEY))?JSON.parse(localStorage.getItem(KEY)):[]
     );
     // ESTO SE CLONÓ VARIAS VECES. El coso original usa solo 1 campo, pero nosotros ocupamos 4
@@ -21,8 +21,8 @@ function TEST(){
 
     // ESTA SE QUEDA (es el guardado automático)
     useEffect(()=>{
-        localStorage.setItem(KEY,JSON.stringify(todos));
-        },[todos]);//cuando cambie el todos lo guarda en localStorage
+        localStorage.setItem(KEY,JSON.stringify(productos));
+        },[productos]);//cuando cambie el array d los productos lo guarda en localStorage
     
     const agregarProducto = () => {
         const nombre = nombreRef.current.value;
