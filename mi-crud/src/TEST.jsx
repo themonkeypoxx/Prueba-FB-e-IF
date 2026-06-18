@@ -60,45 +60,33 @@ function TEST(){
         ///// ESTE ES EL HTML /////
         ///////////////////////////
         <>
-            <html lang="es">
-            <head>
-                <meta charset="UTF-8" />
-                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                <title>Document</title>
-                <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"></link>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-            </head>
-            <body>
- 
                 <h1>Chapuzas</h1>
-                <div class="card text-center">
-                <div class="card-header">
+                <div className="card text-center">
+                <div className="card-header">
                     <h3>Administrador de productos chapuzas</h3>
                 </div>
-                <div class="card-body">
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                <div className="card-body">
+                    <div className="input-group input-group-sm mb-3">
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
+                        <input ref={nombreRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
                     </div>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    <div className="input-group input-group-sm mb-3">
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Precio</span>
+                        <input ref={precioRef}  type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
                     </div>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">stock</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    <div className="input-group input-group-sm mb-3">
+                        <span className="input-group-text" id="inputGroup-sizing-sm">stock</span>
+                        <input ref={stockRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
                     </div>
-                    <div class="input-group input-group-sm mb-3">
-                        <span class="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    <div className="input-group input-group-sm mb-3">
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
+                        <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                    </div>
+                    <button onClick={agregarProducto} className="btn btn-success w-100">
+                        Añadir Producto
+                    </button>
                     </div>
                 </div>
-                <div class="card-footer text-body-secondary">
-                    2 days ago
-                </div>
-                </div>
-            </body>
-            </html>
         </>
     );
 };
