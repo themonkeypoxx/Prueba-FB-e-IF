@@ -85,8 +85,43 @@ function TEST(){
                     <button onClick={agregarProducto} className="btn btn-success w-100">
                         Añadir Producto
                     </button>
+                    <div className="card">
+                <div className="card-header bg-secondary text-white">
+                    <h5>Lista de Productos en Inventario</h5>
+                </div>
+                        <div className="card-body p-0">
+                            <table className="table table-striped table-hover mb-0">
+                                <thead className="table-dark">
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Precio</th>
+                                        <th>Stock</th>
+                                        <th>Descripción</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        productos.length === 0 ? (
+                                            <tr>
+                                                <td colSpan="5" className="text-center text-muted p-3">No hay productos registrados.</td>
+                                            </tr>
+                                        ) : (
+                                            productos.map((producto) => (
+                                                <ProductoRow 
+                                                    key={producto.id} 
+                                                    producto={producto} 
+                                                    eliminarProducto={eliminarProducto} 
+                                                />
+                                            ))
+                                        )
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
+            </div>
         </>
     );
 };

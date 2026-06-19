@@ -17,6 +17,14 @@ function ProductoRow({ producto, eliminarProducto }) {
                     Eliminar
                 </button>
             </td>
+            <td>
+                <button 
+                    onClick={() => eliminarProducto(id)} 
+                    className="btn btn-danger btn-sm"
+                >
+                    Editar
+                </button>
+            </td>
         </tr>
     );
 }
