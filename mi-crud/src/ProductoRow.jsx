@@ -10,18 +10,14 @@ function ProductoRow({ producto, eliminarProducto }) {
             <td>{stock || 0} u.</td>
             <td>{descripcion || <i>Sin descripción</i>}</td>
             <td>
-                <button 
-                    onClick={() => eliminarProducto(id)} 
-                    className="btn btn-danger btn-sm"
-                >
+                <button onClick={() => eliminarProducto(id)} className="btn btn-danger btn-sm">
+                    <i className="bi bi-plus-circle"></i>
                     Eliminar
                 </button>
             </td>
             <td>
-                <button 
-                    onClick={() => eliminarProducto(id)} 
-                    className="btn btn-danger btn-sm"
-                >
+                <button onClick={() => eliminarProducto(id)} className="btn btn-danger btn-sm">
+                    <i className="bi bi-plus-circle"></i>
                     Editar
                 </button>
             </td>

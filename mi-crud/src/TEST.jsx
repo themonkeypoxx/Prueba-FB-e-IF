@@ -60,12 +60,17 @@ function TEST(){
         ///// ESTE ES EL HTML /////
         ///////////////////////////
         <>
-                <h1>Chapuzas</h1>
+                <header>
+                    <h1>Chapuzas</h1>
+                    <ul>
+                        <li>© 2026 Ismael Figueroa, Francico Briones</li>
+                    </ul>
+                </header>
                 <div className="card text-center">
-                <div className="card-header">
+                <div className="card-header" id="headCaja">
                     <h3>Administrador de productos chapuzas</h3>
                 </div>
-                <div className="card-body">
+                <div className="card-body" id="cajaInputs">
                     <div className="input-group input-group-sm mb-3">
                         <span className="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
                         <input ref={nombreRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
@@ -83,21 +88,22 @@ function TEST(){
                         <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
                     </div>
                     <button onClick={agregarProducto} className="btn btn-success w-100">
+                        <i class="bi bi-plus-circle"></i>
                         Añadir Producto
                     </button>
                     <div className="card">
-                <div className="card-header bg-secondary text-white">
+                <div className="card-header bg-secondary text-white" id="preTabla">
                     <h5>Lista de Productos en Inventario</h5>
                 </div>
                         <div className="card-body p-0">
-                            <table className="table table-striped table-hover mb-0">
+                            <table className="table table-dark table-hover" id="Tabla">
                                 <thead className="table-dark">
                                     <tr>
-                                        <th>Nombre</th>
-                                        <th>Precio</th>
-                                        <th>Stock</th>
-                                        <th>Descripción</th>
-                                        <th>Acciones</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Precio</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col" colSpan="2">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
