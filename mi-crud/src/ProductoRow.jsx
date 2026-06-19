@@ -1,17 +1,23 @@
-function ToDoItem({todo,cambiarEstado}){
-    const {id,task,complete}=todo;
-    const fnCambiarEstado=()=>{
-        cambiarEstado(id);
-    }
+import React from 'react';
+
+function ProductoRow({ producto, eliminarProducto }) {
+    const { id, nombre, precio, stock, descripcion } = producto;
+
     return (
-        <>
-            <li className="list-group-item">
-            <input className="form-check-input me-2" onChange={fnCambiarEstado} checked={complete} 
-            type="checkbox">
-            </input>
-            {task}
-            </li>
-        </>
+        <tr>
+            <td>{nombre}</td>
+            <td>${precio}</td>
+            <td>{stock || 0} u.</td>
+            <td>{descripcion || <i>Sin descripción</i>}</td>
+            <td>
+                <button 
+                    onClick={() => eliminarProducto(id)} 
+                    className="btn btn-danger btn-sm"
+                >
+                    Eliminar
+                </button>
+            </td>
+        </tr>
     );
 }
-export default ToDoItem;
+export default ProductoRow;
