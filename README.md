@@ -4,6 +4,4 @@ Ismael Figueroa (Funciones de crear y borrar, tabla)
 
 Francisco Briones (función de editar, diseño de página, botones decorados)
 
-Todos los commits originales se encuentran en: https://github.com/themonkeypoxx/Prueba-FB-e-IF.git
-
 // cd mi-crud // npm run dev ////////
