@@ -1,34 +1,94 @@
-h1{
+h1 {
   color: black;
 }
 
-header{
-  background-color: rgb(52, 52, 178);
-}
-
-header h1{
-  color: white;
-  padding-top: 50px;
-  margin-left: 60px;
-  margin-right: 60px;
-}
-
-header ul li{
-    display: flex;
-    gap: 20px;
-    color: white;
-    margin-left: 30px
-}
-#Tabla {
-  width: 80%;       
-  margin: 0 auto;  
-}
-
-
-#cajaInputs{
-  margin: 0 auto;
-}
-
-body{
+body {
   background-color: white;
+}
+
+header {
+  background-color: #0a0a0a; 
+  height: 80px;
+  border-bottom: 4px solid #000242;
+  display: flex;
+  align-items: center; 
+  padding: 0 30px; 
+  justify-content: space-between;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); 
+}
+
+header h1 {
+  color: #e0e0e0;
+  margin: 0px; 
+  padding: 0px; 
+  display: flex; 
+  align-items: center; 
+  gap: 15px; 
+  font-size: 24px; 
+  font-weight: 500;
+  letter-spacing: 1px; 
+}
+
+header h1 img {
+  width: 60px; 
+  height: auto;
+  margin: 0px; 
+  }
+
+
+header ul {
+  list-style: none; 
+  margin: 0px;
+  padding: 0px;
+}
+
+header ul li {
+  color: #888888;
+  font-size: 14px;
+  margin: 0px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0px;
+}
+
+#cajaInputs {
+  display: grid;
+  grid-template-columns: 450px 900px; 
+  gap: 15px 40px; 
+  align-items: start; 
+  justify-content: center; 
+  padding: 30px;
+}
+
+#cajaInputs > .input-group,
+#cajaInputs > button {
+  grid-column: 1;
+  margin-bottom: 0px !important; 
+}
+
+#cajaInputs > .card {
+  grid-column: 2;
+  grid-row: 1 / span 10; 
+  margin-top: 0px !important; 
+}
+
+#Tabla {
+  width: 100%; 
+  margin: 0px; 
+}
+
+#preTabla h5 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px;
+}
+
+#preTabla h5 img {
+  width: 40px;
+  height: auto;
+  margin-left: 15px;
 }

@@ -19,6 +19,8 @@ function TEST(){
     const stockRef = useRef();
     const descripcionRef = useRef();
 
+    const [idEditando, setIdEditando] = useState(null);
+
     // ESTA SE QUEDA (es el guardado automático)
     useEffect(()=>{
         localStorage.setItem(KEY,JSON.stringify(productos));
@@ -50,58 +52,110 @@ function TEST(){
         descripcionRef.current.value = "";
     };
 
+    //Carga los datos del producto elegido en los inputs
+    const cargarProductoEditar = (producto) => {
+        setIdEditando(producto.id);
+        
+        nombreRef.current.value = producto.nombre;
+        precioRef.current.value = producto.precio;
+        stockRef.current.value = producto.stock;
+        descripcionRef.current.value = producto.descripcion || "";
+    };
+
+    //Procesa la actualización del producto editado
+    const actualizarProducto = () => {
+        const nombre = nombreRef.current.value;
+        const precio = precioRef.current.value;
+        const stock = stockRef.current.value;
+        const descripcion = descripcionRef.current.value;
+
+        if (nombre === '' || precio === '') return;
+
+        const productosActualizados = productos.map((prod) => {
+            if (prod.id === idEditando) {
+                return { ...prod, nombre, precio, stock, descripcion };
+            }
+            return prod;
+        });
+
+        setProductos(productosActualizados);
+        cancelarEdicion(); // Limpia los campos y sale del modo edición
+    };
+
+    //Limpia el formulario si desisten de editar
+    const cancelarEdicion = () => {
+        setIdEditando(null);
+        nombreRef.current.value = "";
+        precioRef.current.value = "";
+        stockRef.current.value = "";
+        descripcionRef.current.value = "";
+    };
+
     const eliminarProducto = (id) => {
         const nuevosProductos = productos.filter((prod) => prod.id !== id);
         setProductos(nuevosProductos);
     };
     
     return (
-        ////////////////////////////
-        ///// ESTE ES EL HTML /////
-        ///////////////////////////
         <>
-                <header>
-                    <h1>Chapuzas</h1>
-                    <ul>
-                        <li>© 2026 Ismael Figueroa, Francico Briones</li>
-                    </ul>
-                </header>
-                <div className="card text-center">
+            <header>
+                <h1><img id="logo-esquina" src="/logo_enclave.jpg" alt="Logo Enclave" />Direccion de Experimentos ENCLAVE</h1>
+                <ul>
+                    <li>© 2026 Ismael Figueroa, Francisco Briones</li>
+                </ul>
+            </header>
+            <div className="card text-center">
                 <div className="card-header" id="headCaja">
-                    <h3>Administrador de productos chapuzas</h3>
+                    <h3>Administrador de Refugios vault-Tec</h3>
                 </div>
                 <div className="card-body" id="cajaInputs">
                     <div className="input-group input-group-sm mb-3">
                         <span className="input-group-text" id="inputGroup-sizing-sm">Nombre</span>
-                        <input ref={nombreRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                        <input ref={nombreRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
                     <div className="input-group input-group-sm mb-3">
                         <span className="input-group-text" id="inputGroup-sizing-sm">Precio</span>
-                        <input ref={precioRef}  type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                        <input ref={precioRef} type="number" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
                     <div className="input-group input-group-sm mb-3">
-                        <span className="input-group-text" id="inputGroup-sizing-sm">stock</span>
-                        <input ref={stockRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Cantidad/Personas</span>
+                        <input ref={stockRef} type="number" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
                     <div className="input-group input-group-sm mb-3">
-                        <span className="input-group-text" id="inputGroup-sizing-sm">Descripcion</span>
-                        <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"></input>
+                        <span className="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
+                        <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
-                    <button onClick={agregarProducto} className="btn btn-success w-100">
-                        <i class="bi bi-plus-circle"></i>
-                        Añadir Producto
-                    </button>
-                    <div className="card">
-                <div className="card-header bg-secondary text-white" id="preTabla">
-                    <h5>Lista de Productos en Inventario</h5>
-                </div>
+
+                    {/*Si está editando muestra "Guardar", si no, muestra tu botón de siempre */}
+                    {idEditando ? (
+                        <>
+                            <button onClick={actualizarProducto} className="btn btn-primary w-100 mb-2">
+                                <i class="bi bi-floppy2"></i>
+                                Guardar Cambios
+                            </button>
+                            <button onClick={cancelarEdicion} className="btn btn-secondary w-100 mb-3">
+                                <i class="bi bi-x-octagon-fill"></i>
+                                Cancelar Edición
+                            </button>
+                        </>
+                    ) : (
+                        <button onClick={agregarProducto} className="btn btn-success w-100">
+                            <i className="bi bi-plus-circle"></i>
+                            Añadir Producto
+                        </button>
+                    )}
+
+                    <div className="card mt-3">
+                        <div className="card-header bg-secondary text-white" id="preTabla">
+                            <h5><img src="/logo_vaul.png" alt="Logo Vault-Tec" />Lista de Refugios en Inventario Vault-Tec</h5>
+                        </div>
                         <div className="card-body p-0">
                             <table className="table table-dark table-hover" id="Tabla">
                                 <thead className="table-dark">
                                     <tr>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Precio</th>
-                                        <th scope="col">Stock</th>
+                                        <th scope="col">Cantidad/Personas</th>
                                         <th scope="col">Descripción</th>
                                         <th scope="col" colSpan="2">Acciones</th>
                                     </tr>
@@ -110,14 +164,15 @@ function TEST(){
                                     {
                                         productos.length === 0 ? (
                                             <tr>
-                                                <td colSpan="5" className="text-center text-muted p-3">No hay productos registrados.</td>
+                                                <td colSpan="6" className="text-center text-muted p-3">No hay productos registrados.</td>
                                             </tr>
                                         ) : (
                                             productos.map((producto) => (
-                                                <ProductoRow 
-                                                    key={producto.id} 
-                                                    producto={producto} 
-                                                    eliminarProducto={eliminarProducto} 
+                                                <ProductoRow
+                                                    key={producto.id}
+                                                    producto={producto}
+                                                    eliminarProducto={eliminarProducto}
+                                                    editarProducto={cargarProductoEditar} 
                                                 />
                                             ))
                                         )
@@ -130,5 +185,5 @@ function TEST(){
             </div>
         </>
     );
-};
+}
 export default TEST;
