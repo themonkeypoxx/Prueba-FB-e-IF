@@ -126,7 +126,7 @@ function TEST(){
                         <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
 
-                    {/*Si está editando muestra "Guardar", si no, muestra tu botón de siempre */}
+                    {/*Si está editando muestra guardar jijijaaaa*/}
                     {idEditando ? (
                         <>
                             <button onClick={actualizarProducto} className="btn btn-primary w-100 mb-2">
