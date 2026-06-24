@@ -95,6 +95,22 @@ function TEST(){
         const nuevosProductos = productos.filter((prod) => prod.id !== id);
         setProductos(nuevosProductos);
     };
+
+
+    ///API!!!!!!!
+    useEffect(() => {
+        fetch('https://api.thecatapi.com/v1/images/search')
+        .then(response => response.json())
+        .then(data => {
+            if (data.length > 0) {
+                const imageUrl = data[0].url;
+                console.log('URL de la imagen del gato:', imageUrl);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener la imagen del gato:', error);
+        });
+    }, []);
     
     return (
         <>
