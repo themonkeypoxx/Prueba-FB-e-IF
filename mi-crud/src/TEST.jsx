@@ -1,6 +1,7 @@
 import { useState,useRef,useEffect } from "react";
 import { v4 as uuid } from "uuid";
 import ProductoRow from "./ProductoRow";
+import { useFetch } from "./useFetch";
 
 const KEY="chapuzas-productos";//el nombre que tendrá el arreglo en el localStorage
 
@@ -98,19 +99,8 @@ function TEST(){
 
 
     ///API!!!!!!!
-    useEffect(() => {
-        fetch('https://api.thecatapi.com/v1/images/search')
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                const imageUrl = data[0].url;
-                console.log('URL de la imagen del gato:', imageUrl);
-            }
-        })
-        .catch(error => {
-            console.error('Error al obtener la imagen del gato:', error);
-        });
-    }, []);
+    const { data } = useFetch("https://api.thecatapi.com/v1/images/search?limit=1&api-key=live_sH7KaGvEcxYJ92sHs82j5uKwQLyfnRwmUAOalPNf0HOTI0Jpl7JyhbTF7IXK9aIB");
+                                
     
     return (
         <>
@@ -140,6 +130,12 @@ function TEST(){
                     <div className="input-group input-group-sm mb-3">
                         <span className="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
                         <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
+                    </div>
+                    <div className="text-center mb-3">
+                        <h1>Gato del día</h1>
+                        {data && (
+                            <img src={data[0].url} alt="Gato del día" className="img-fluid" />
+                        )}
                     </div>
 
                     {/*Si está editando muestra guardar jijijaaaa*/}
