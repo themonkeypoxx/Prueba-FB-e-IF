@@ -5,10 +5,11 @@ export function useFetch(url) {
    
     useEffect(() => {
         fetch(url)
-            .then((response) => { response.json() })
+            .then((response) => response.json())
             .then((data) => setData(data));
-    }, [])};
+    }, [])
 
     return { data };
+}
 
    

@@ -131,12 +131,6 @@ function TEST(){
                         <span className="input-group-text" id="inputGroup-sizing-sm">Descripción</span>
                         <input ref={descripcionRef} type="text" className="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" />
                     </div>
-                    <div className="text-center mb-3">
-                        <h1>Gato del día</h1>
-                        {data && (
-                            <img src={data[0].url} alt="Gato del día" className="img-fluid" />
-                        )}
-                    </div>
 
                     {/*Si está editando muestra guardar jijijaaaa*/}
                     {idEditando ? (
@@ -156,6 +150,7 @@ function TEST(){
                             Añadir Producto
                         </button>
                     )}
+
 
                     <div className="card mt-3">
                         <div className="card-header bg-secondary text-white" id="preTabla">
@@ -192,6 +187,12 @@ function TEST(){
                                 </tbody>
                             </table>
                         </div>
+                    </div>
+                     <div className="text-center mb-3">
+                        <h1>Gato del día</h1>
+                        {data && (
+                            <img src={data[0].url} alt="Gato del día" className="img-fluid" width={data[0].width} height={data[0].height} />
+                        )}
                     </div>
                 </div>
             </div>
